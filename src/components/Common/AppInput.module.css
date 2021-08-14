@@ -1,0 +1,21 @@
+.AppInput {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .AppInput label {
+    font-weight: bold;
+    margin-right: 1rem;
+    display: block;
+    width: 5rem;
+    text-align: left;
+  }
+  
+  .AppInput input {
+    width: 17rem;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    font: inherit;
+    padding-left: 0.5rem;
+  }
