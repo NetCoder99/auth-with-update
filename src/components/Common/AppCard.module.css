@@ -1,0 +1,9 @@
+.AppCard {
+    margin: auto;
+    width: 85%;
+    height: 30rem;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.26) ;
+    border-radius: 10px;
+    padding: .1em;
+}

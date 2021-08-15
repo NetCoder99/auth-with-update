@@ -1,31 +1,50 @@
-import React from 'react';
+import React, { useContext } from "react";
 
-//import { useContext, Fragment } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import './App.css';
+import { Switch, Route, Redirect } from "react-router-dom";
+import "./App.css";
 
-import {LoginContextProvider} from './data/LoginContext';
-import Layout from './components/Layout/Layout';
-import LoginPage from './pages/LoginPage';
-import HomePage from './pages/HomePage';
-import DashboardPage from './pages/DashboardPage';
+import LoginContext from "./data/LoginContext";
+
+import Layout from "./components/Layout/Layout";
+import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
+import SearchPage from "./pages/SearchPage";
+import ReportsPage from "./pages/ReportsPage";
+import DashboardPage from "./pages/DashboardPage";
 
 function App() {
+  const LoginCtx = useContext(LoginContext);
+  console.log("App.token:" + LoginCtx.token);
+
   return (
-    <LoginContextProvider>
     <Layout>
       <Switch>
-        <Route path='/' exact>
+        <Route path="/" exact>
           <HomePage />
         </Route>
-        <Route path='/login'><LoginPage/></Route>
-        <Route path='/dashboard'><DashboardPage/></Route>
-        <Route path='*'>
+        <Route path="/login">
+          <LoginPage />
+        </Route>
+        {LoginCtx.isLoggedIn ? (
+          <Route exact path="/search" component={SearchPage} />
+        ) : (
+          <Redirect to="/login" />
+        )}
+        {LoginCtx.isLoggedIn ? (
+          <Route exact path="/dashboard" component={DashboardPage} />
+        ) : (
+          <Redirect to="/login" />
+        )}
+        {LoginCtx.isLoggedIn ? (
+          <Route exact path="/reports" component={ReportsPage} />
+        ) : (
+          <Redirect to="/login" />
+        )}
+        <Route path="*">
           <Redirect to="/" />
         </Route>
       </Switch>
     </Layout>
-    </LoginContextProvider>    
   );
 }
 

@@ -1,5 +1,4 @@
 import React, { useState, useRef, useContext } from "react";
-import axios from "axios";
 
 import classes from "./LoginForm.module.css";
 
@@ -11,15 +10,10 @@ import {LoginApi} from '../../data/LoginApi';
 // ----------------------------------------------------------------------------
 const LoginForm = (props) => {
   const LoginCtx = useContext(LoginContext);
-
-  const versionUrl = "http://localhost:8081/version2";
-  const loginUrl = "http://127.0.0.1:8081/login";
-
   const userIdRef = useRef();
   const passIdRef = useRef();
 
-  const [postData, setPostData] = useState();
-  const [hasError, setError] = useState(false);
+  const [hasError,  setError]   = useState(false);
   const [isLoading, setLoading] = useState(false);
 
   const userIdParms = {
@@ -35,7 +29,6 @@ const LoginForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     console.log("LoginForm.handleSubmit");
     const creds = {
       userName: userIdRef.current.value,
@@ -46,35 +39,8 @@ const LoginForm = (props) => {
     setLoading(true);
     LoginCtx.setToken(null);
 
-    //LoginApi(creds, setError, setLoading);
-
-    const postConfig = {
-      url: "http://127.0.0.1:8081/login",
-      method: "post",
-      data: creds,
-      headers: {
-        "headerKey": "vs001@cox.net",
-        "Content-Type": "application/json",
-      },
-    };
-    axios(postConfig)
-      .then((response) => {
-        console.log("LoginForm.handleSubmit.axios:" + response.data.token);
-        LoginCtx.setToken(response.data.token);
-        LoginCtx.setMessage("Success");
-        setError(false);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log("LoginForm.handleSubmit.axios.error:" + error);
-        LoginCtx.setToken(null);
-        LoginCtx.setMessage(error.response.data.message);
-        setError(true);
-        setLoading(false);
-      });
-
-
-    };
+    LoginApi(creds, LoginCtx.setToken, LoginCtx.setMessage, setError, setLoading);
+  };
 
   return (
     <form onSubmit={handleSubmit}>

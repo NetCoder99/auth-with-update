@@ -5,11 +5,14 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {LoginContextProvider} from './data/LoginContext';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <LoginContextProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </LoginContextProvider>,
   document.getElementById('root')
 );
 

@@ -1,0 +1,18 @@
+.reports {
+    margin: 3rem auto;
+    text-align: center;
+  }
+  
+  .reports h1 {
+    font-size: 2.5rem;
+  }
+
+  .reports h2 {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  .reports p {
+    font-weight: bold;
+    font-size: 1rem;
+  }  
