@@ -15,7 +15,7 @@
   .AppInput input {
     width: 17rem;
     border-radius: 5px;
-    border: 2px solid #ccc;
+    border: 2px solid lightgray;
     font: inherit;
     padding-left: 0.5rem;
   }

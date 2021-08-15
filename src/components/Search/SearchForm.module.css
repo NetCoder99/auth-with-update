@@ -1,0 +1,50 @@
+.search {
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 85%;
+    height: 4rem;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    padding: .5rem;
+    text-align: left;
+  }
+  
+  .search h1 h2 {
+    text-align: center;
+  }
+  
+  .search hr {
+    border-top: 1px solid lightgray;
+    margin-bottom: 1rem;
+  }
+
+  .search label {
+    font-weight: bold;
+    margin-right: 1rem;
+    display: inline-block;
+    width: 3rem;
+    text-align: left;
+  }
+  
+  .search input {
+    width: 17rem;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    font: inherit;
+    padding-left: 0.5rem;
+    margin-right: 2rem;
+  }
+
+  .error {
+    color: red !important;
+    font-weight: bold;
+    width: 50rem !important;
+  }
+  
+  .success {
+    color: green !important;
+    width: 50rem !important;
+  }
+  

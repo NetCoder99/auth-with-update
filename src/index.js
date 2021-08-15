@@ -6,13 +6,16 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {LoginContextProvider} from './data/LoginContext';
+import {CustomersContextProvider} from './data/CustomersContext';
 
 ReactDOM.render(
-  <LoginContextProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </LoginContextProvider>,
+  <CustomersContextProvider>
+    <LoginContextProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </LoginContextProvider>
+  </CustomersContextProvider>,
   document.getElementById('root')
 );
 

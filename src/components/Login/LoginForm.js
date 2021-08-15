@@ -1,5 +1,4 @@
 import React, { useState, useRef, useContext } from "react";
-
 import classes from "./LoginForm.module.css";
 
 import AppButton from "../Common/AppButton";

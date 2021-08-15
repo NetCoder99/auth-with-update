@@ -18,5 +18,6 @@
   .AppButton:disabled {
     background-color: gray;
     border: 1px solid gray;
+    cursor:default;
   }
   
