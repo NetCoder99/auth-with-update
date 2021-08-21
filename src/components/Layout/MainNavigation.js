@@ -8,6 +8,7 @@ const MainNavigation = (props) => {
   console.log("MainNavigation.init");
   const history = useHistory();
   const LoginCtx = useContext(LoginContext);
+  const displayName = LoginCtx.userName || "Logout"
 
   const logoutHandler = (event) => { 
     console.log("MainNavigation.logoutHandler");
@@ -32,7 +33,7 @@ const MainNavigation = (props) => {
             {LoginCtx.isLoggedIn &&<Link to='/dashboard'>Dashboard</Link>} 
           </li>
           <li>
-            {LoginCtx.isLoggedIn &&<Link to="" onClick={logoutHandler}>Logout</Link>} 
+            {LoginCtx.isLoggedIn &&<Link to="" onClick={logoutHandler}>{displayName}</Link>} 
             {!LoginCtx.isLoggedIn &&<Link to='/login'>Login</Link>} 
           </li>
         </ul>

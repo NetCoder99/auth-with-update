@@ -1,4 +1,6 @@
 import React, { useState, useRef, useContext } from "react";
+import { useLocation, useHistory } from "react-router-dom";
+
 import classes from "./LoginForm.module.css";
 
 import AppButton from "../Common/AppButton";
@@ -9,11 +11,23 @@ import {LoginApi} from '../../data/LoginApi';
 // ----------------------------------------------------------------------------
 const LoginForm = (props) => {
   const LoginCtx = useContext(LoginContext);
+  const location = useLocation();
+  const history = useHistory();
+
   const userIdRef = useRef();
   const passIdRef = useRef();
+  
+  const { from } = location.state || { from: { pathname: "/" } };
+  const returnUrl = from.pathname; 
+  //console.log("LoginForm.from.returnUrl:" + returnUrl);
 
   const [hasError,  setError]   = useState(false);
   const [isLoading, setLoading] = useState(false);
+
+  const redirectToUrl = (props) => {
+    console.log("LoginForm.redirectToUrl:" + returnUrl);
+    history.push(returnUrl);
+  };
 
   const userIdParms = {
     id: "userIdInput",
@@ -38,7 +52,7 @@ const LoginForm = (props) => {
     setLoading(true);
     LoginCtx.setToken(null);
 
-    LoginApi(creds, LoginCtx.setToken, LoginCtx.setMessage, setError, setLoading);
+    LoginApi(creds, LoginCtx.setToken, LoginCtx.setMessage, LoginCtx.setUserName, setError, setLoading, redirectToUrl);
   };
 
   return (

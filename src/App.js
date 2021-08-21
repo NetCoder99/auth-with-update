@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 
+import PrivateRoute from './components/Common/PrivateRoute';
 import LoginContext from "./data/LoginContext";
 
 import Layout from "./components/Layout/Layout";
@@ -25,21 +26,9 @@ function App() {
         <Route path="/login">
           <LoginPage />
         </Route>
-        {LoginCtx.isLoggedIn ? (
-          <Route exact path="/search" component={SearchPage} />
-        ) : (
-          <Redirect to="/login" />
-        )}
-        {LoginCtx.isLoggedIn ? (
-          <Route exact path="/dashboard" component={DashboardPage} />
-        ) : (
-          <Redirect to="/login" />
-        )}
-        {LoginCtx.isLoggedIn ? (
-          <Route exact path="/reports" component={ReportsPage} />
-        ) : (
-          <Redirect to="/login" />
-        )}
+        <PrivateRoute exact path="/search" component={SearchPage} />
+        <PrivateRoute exact path="/dashboard" component={DashboardPage} />
+        <PrivateRoute exact path="/reports" component={ReportsPage} />
         <Route path="*">
           <Redirect to="/" />
         </Route>

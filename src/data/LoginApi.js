@@ -1,6 +1,8 @@
 import axios from "axios";
 
-export function LoginApi(credentials, setToken, setMessage, setError, setLoading) {
+//LoginApi(creds, LoginCtx.setToken, LoginCtx.setMessage, LoginCtx.setUserName, setError, setLoading, redirectToUrl);
+
+export function LoginApi(credentials, setToken, setMessage, setUserName, setError, setLoading, redirectToUrl) {
     console.log("loginApi.credentials:" + credentials);
 
     const postConfig = {
@@ -19,6 +21,9 @@ export function LoginApi(credentials, setToken, setMessage, setError, setLoading
           setMessage("Success");
           setError(false);
           setLoading(false);
+          redirectToUrl("returnUrl");
+          setUserName(credentials.userName);
+
         })
         .catch((error) => {
           console.log("LoginForm.handleSubmit.axios.error:" + error);
